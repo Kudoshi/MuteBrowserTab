@@ -2,6 +2,7 @@ import pyautogui
 import keyboard
 from playsound import playsound
 from pathlib import Path
+import time
 
 '''
 Program looks for the current tab open based on the currentTab and currentTab_unfocused image 
@@ -67,3 +68,5 @@ while True:
 
     if keyboard.is_pressed("ctrl") and keyboard.is_pressed("q"):
         quit()
+    
+    time.sleep(0.01)

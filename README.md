@@ -5,6 +5,10 @@ You will have to screenshot the current tab's UI as seen in the .png picture (Bo
 You might have to adjust the confidence level as well to fine tune it to your liking.
 
 
+Hotkey:
+Ctrl+M - Mute/unmute current tab
+Ctrl+Q - Quit program
+
 Tested on Google chrome Windows 10
 
 You will have to install the necessary package:

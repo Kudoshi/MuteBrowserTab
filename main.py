@@ -11,6 +11,10 @@ It finds the location of the image given and then moves there. Right click and m
 You might have to screenshot the current tab's image as shown in the picture given and then adjust the confidence level
 of the pyautogui.locateCenterOnScreen()
 
+Hotkeys:
+Ctrl+M = Mute/unmute current tab
+Ctrl+Q = Quit program
+
 It plays sound to notify whether it could find a current tab.
 '''
 
@@ -28,6 +32,7 @@ while True:
 
     #If hotkey is pressed
     if keyboard.is_pressed("ctrl") and keyboard.is_pressed("m"):
+        originalPos = pyautogui.position()
         tabLocation1 = pyautogui.locateCenterOnScreen("currentTab.png", confidence=0.94)
         tabLocation2 = pyautogui.locateCenterOnScreen("currentTab_unfocused.png", confidence=0.94)
 
@@ -41,11 +46,11 @@ while True:
 
         # Move mouse
         if selectedLocation != None:
-            # print(selectedLocation[0])
             pyautogui.moveTo(selectedLocation[0] - 8, selectedLocation[1] - 13)
             pyautogui.click(button="right")
             pyautogui.move(50, 240)
             pyautogui.click()
+            pyautogui.moveTo(originalPos)
 
             # Set alternating sound fx
             if soundFile != accept2Sfx:
@@ -55,6 +60,10 @@ while True:
 
             #Play success sound
             playsound(str(soundFile))
+
         else:
             #Play fail sound
             playsound(str(failSfx))
+
+    if keyboard.is_pressed("ctrl") and keyboard.is_pressed("q"):
+        quit()

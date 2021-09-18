@@ -1,6 +1,5 @@
 import pyautogui
 import keyboard
-import time
 from playsound import playsound
 from pathlib import Path
 
@@ -19,18 +18,16 @@ It plays sound to notify whether it could find a current tab.
 soundFile = None
 
 #Set file path of sfx
-originalPath = Path(__file__).parent
-failSfx = originalPath / "Fail.mp3"
-accept1Sfx = originalPath / "Accept1.mp3"
-accept2Sfx = originalPath / "Accept2.mp3"
+originalPath = Path(__file__).parent.resolve()
+failSfx = originalPath / "Audio" / "Fail.mp3"
+accept1Sfx = originalPath / "Audio"/ "Accept1.mp3"
+accept2Sfx = originalPath / "Audio"/ "Accept2.mp3"
 
 print("_"*70 ,"\n[START] Program started")
-
 while True:
 
     #If hotkey is pressed
     if keyboard.is_pressed("ctrl") and keyboard.is_pressed("m"):
-        print("Clicked")
         tabLocation1 = pyautogui.locateCenterOnScreen("currentTab.png", confidence=0.94)
         tabLocation2 = pyautogui.locateCenterOnScreen("currentTab_unfocused.png", confidence=0.94)
 
@@ -59,8 +56,5 @@ while True:
             #Play success sound
             playsound(str(soundFile))
         else:
-            print("[ERROR] No current tab found")
             #Play fail sound
             playsound(str(failSfx))
-
-
